@@ -25,7 +25,6 @@ create table venda(
 	preco numeric(9, 2) not null,
 	quantidade int not null,
 	id_produto int not null,
-	constraint fk_id_produto foreign key (id_produto) references produto (id),
 	primary key(id)
 );
 select * from venda
