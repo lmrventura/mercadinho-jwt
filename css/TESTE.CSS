@@ -1,0 +1,510 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@100&family=Playfair+Display&family=Titillium+Web&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@200&family=Noto+Sans:wght@100&family=Oswald:wght@200&family=Playfair+Display&family=Titillium+Web&display=swap');
+
+body {
+    font-family: 'Noto Sans', sans-serif;
+}
+.corpo {
+    background-image: url('../wallpaper.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    list-style: none;
+    /*box-sizing: border-box;*/
+    font-family: 'Noto Sans', sans-serif;
+}
+/*------------ GRID ------------*/
+.container{
+    width: 100vw;
+    height: 100vh;
+    
+    font-family: 'Quicksand', sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+
+    display: grid; /*<!-- rows and columns containers */
+    
+    /*the width of the columns are goind to be 1 fraction of the total remaining space 1fr 1fr 1fr == repeat(3, 1)*/
+    
+    /*grid-template: grid-template-rows: 50px 1fr 1fr 100px; / grid-template-columns: repeat(3, 1fr);*/
+    grid-template: 450px 450px 450px 450px 450px 450px 450px 200px / repeat(2,1fr);
+
+    gap: 0px;
+}
+
+.container div {
+    padding: 0;
+    margin: 0;
+    /*border: 1px solid #000000;*/
+}
+
+.content-1a {
+    grid-column-start: 1;
+    grid-column-end: 2;
+}
+.content-1b {
+    grid-column-start: 2;
+    grid-column-end: 3;
+}
+
+.content-2a {
+    grid-column-start: 1;
+    grid-column-end: 2;
+}
+.content-2b {
+    grid-column-start: 2;
+    grid-column-end: 3;
+}
+
+.content-3a {
+    grid-column-start: 1;
+    grid-column-end: 2;
+}
+.content-3b {
+    grid-column-start: 2;
+    grid-column-end: 3;
+}
+
+.content-4 {
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
+.rodape {
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+/*------------ END-GRID ------------*/
+
+.before {
+    width: 100%;
+    height: 5px;
+    background-color: yellow;
+    position: fixed;
+}
+
+nav{
+    background: rgba(0, 0, 0, .65); /*#23232e;*/
+    height: 60px;
+    width: 100%;
+    position: fixed;
+    z-index: 2;
+}
+
+.logo {
+    color: rgb(255, 255, 255);
+    font-size: 35px;
+    line-height: 60px; /*determines the block-progression dimension of the text-content area of an iline box*/
+    padding: 0 100px;
+    /*font-weight: bold;*/
+    letter-spacing: 3px;
+}
+
+.logo-img {
+    width: 100px; 
+    height: 100px;
+    z-index: 2;
+}
+
+nav ul {
+    float: right;
+    /*margin: 20px;*/
+    margin-right: 100px;
+}
+
+nav ul li {
+    display: inline-block;
+    line-height: 60px;
+    margin: 0 5px;
+    letter-spacing: 3px;
+}
+
+nav ul li a {
+    color: white;
+    font-size: 17px;
+    border-radius: 3px;
+    /*text-transform: uppercase;*/
+}
+
+.icon {
+    cursor: pointer;
+}
+
+nav ul li a:hover {
+    background: rgba(0, 0, 0, .8);
+    /*transition: .5s;*/
+    font-weight: bold;
+    padding: 3px;
+    color: rgb(197, 197, 43);
+}
+.btnNav {
+    letter-spacing: 3px;
+    font-size: 17px;
+    margin: 0 5px;
+    cursor: pointer;
+    color: white;
+    border: 0;
+    width: 80px;
+    height: 30px;
+    border-radius: 3px;
+    background-color: rgba(0, 0, 0, .0);
+    transition: transform 300ms, background-color 300ms;
+    animation: pulse 500ms;
+}
+.btnNav:hover {
+    font-weight: bold;
+    transform: scale(1.07);
+}
+.btnIcon {
+    letter-spacing: 3px;
+    margin: 0 5px;
+    cursor: pointer;
+    color: white;
+    border: 0;
+    width: 20px;
+    height: 30px;
+    border-radius: 3px;
+    background-color: rgba(0, 0, 0, .0);
+    transition: transform 300ms, background-color 300ms;
+    animation: pulse 500ms;
+}
+.btnIcon {
+    font-weight: bold;
+    transform: scale(1.2);
+}
+
+.checkbtn {
+    font-size: 30px;
+    color: white;
+    float: right;
+    line-height: 60px;
+    margin-right: 40px;
+    cursor: pointer;
+    display: none;
+}
+
+#check {
+    display: none;
+}
+
+@media only screen and (max-width: 450px){ /*@media screen and (max-width: 450px){ */
+    .logo {
+        display: none;
+    }
+    .container{
+        grid-template: 0px 450px 450px 450px 450px 450px 450px 200px / repeat(2,1fr);
+        /*
+        grid-template: 0px 450px 400px 0px 0px 400px 450px 100px / repeat(2,1fr);
+        */
+    }
+    .content-1a {
+        grid-column-start: 1;
+        grid-column-end: 3;
+    }
+    .content-1b {
+        grid-column-start: 1;
+        grid-column-end: 3;
+    }
+    
+    .content-2a {
+        grid-column-start: 1;
+        grid-column-end: 3;
+    }
+    .content-2b {
+        grid-column-start: 1;
+        grid-column-end: 3;
+    }
+    
+    .content-3a {
+        grid-column-start: 1;
+        grid-column-end: 3;
+    }
+    .content-3b {
+        grid-column-start: 1;
+        grid-column-end: 3;
+    }
+    
+    .content-4 {
+        grid-column-start: 1;
+        grid-column-end: 3;
+    }
+    
+    .rodape {
+        grid-column-start: 1;
+        grid-column-end: 3;
+    }
+    .content-4 {
+        background-image: url('../imagens/mobile.png');
+    }
+}
+
+@media (max-width: 600px){
+    .container .pJustificado{
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 1160px) {
+    .checkbtn{
+        display: block;
+    }
+    ul#menu {
+        position: fixed;
+        width: 100%;
+        height: 100vh;
+        background: #000000;
+        top: 60px;
+        left: -100%;
+        text-align: center;
+        transition: all .5s;
+    }
+    nav ul#menu li {
+        display: block;
+        /*line-height: 30px;*/
+        margin-top: 25px;
+    }
+    nav ul#menu li a {
+        font-size: 20px;
+    }
+    nav ul li a:hover{
+        background-color: yellow;
+        color: black;
+    }
+    a:hover, a.active{
+        background-color: none;
+        color: white;
+    }
+    #check:checked ~ ul { /*~~~~~~~~~~~*/
+        left: 0%;
+        z-index: 2;
+    }
+    .container .pContent{
+        font-size: 20px;
+    }
+    .container span {
+        font-size: 20px;
+    }
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.carrossel {
+    width: 800px;
+    height: 350px;
+    /*outline: 3px solid black;*/
+    overflow: hidden;
+    
+    margin: 0px auto;
+    box-shadow: 10px 10px 15px rgba(0, 0, 0, .7);
+}
+
+.carrossel ul {
+    display: flex;
+    list-style: none;
+    width: 2400px; /*3 img 800px each*/
+    height: 350px;
+}
+
+.carrossel li {
+    position: relative;
+    animation: slide 15s infinite ease-out; 
+}
+
+@keyframes slide {
+    0%{left: 0px}
+    20%{left: 0px}
+    30%{left: -800px}
+    50%{left: -800px}
+    60%{left: -1600px}
+    70%{left: -1600px}
+    80%{left: -2400px}
+    90%{left: -2400px}
+    100%{left: 0px}
+}
+
+/*-------------- BG IMAGE -------------- 2A - 2B*/
+.content-1b, .content-2b, .content-3b { 
+    background-color: #ffefa9;
+    height: 450px;
+}
+/*-------------- BG IMAGE --------------*/
+
+/*----------------- CONTENT -----------------*/
+div.content {
+    width:60%; 
+    margin: auto; 
+}
+
+.logo-icon {
+    width:60px; 
+    height:45px; 
+    z-index: 5;
+}
+
+.p80 {
+    display: block;
+    width: 60%;
+    margin: 0 auto;
+}
+
+.pJustificado {
+    text-align: justify;
+    text-indent: 40px;
+    font-size: 16px;
+    font-family: 'Inconsolata', monospace;
+}
+
+/*---------- DIRECTION ITEMS CONTENT ----------*/
+.content-1b, .content-2b, .content-3b { /*content-2a - content-2b*/
+    display: flex;
+    flex-direction: column; /*Itens diferentes no centro*/
+    align-items: center; /*Botão no Centro*/
+    justify-content: center; /*Verticalmente*/
+    text-align: center;
+}
+/*----------                         ----------*/
+
+.content-4 {
+    background-image: url('../imagens/pc.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.content-4 {
+    display: flex;
+    flex-direction: column;
+    color: white;
+    font-weight: bold;
+    align-items: center;
+    justify-content: center;
+}
+/*
+@media screen and (max-width:700px){
+    .content-4 {
+        background-image: url("../imagens/workMobile.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+}
+*/
+@media screen and (max-width:950px){
+    .content-4 {
+        background-image: url("../imagens/tablet.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+}
+
+.btn {
+    width: 100px;
+    height: 50px;
+    cursor: pointer;
+    border: none;
+    text-transform: uppercase;
+    background-color: #FFD400;
+    border-radius: 12%;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    transform: translateY(-7px);
+}
+
+.btnInsta a{
+    color: white;
+}
+.btnInsta {
+    margin-top: 10px;
+    cursor: pointer;
+    color: white;
+    border: 0;
+    width: 110px;
+    height: 30px;
+    border-radius: 20%;
+    background-color: #000000;
+    transition: transform 300ms, background-color 300ms;
+    animation: pulse 500ms;
+}
+.btnInsta:hover{
+    transform: scale(1.05);
+    background-color: #4b4d4d;  
+}
+
+/*----------------- END-CONTENT -----------------*/
+
+nav#media {
+    position: relative; /*talvez tire*/
+    display: flex;
+    justify-content: space-around;
+    background-color: rgb(67, 65, 65);
+    height: 6vh;
+}
+nav#media .text {
+    display: none;
+}
+nav#media ul {
+    display: flex;
+}
+nav#media h1 {
+    color: white;
+    line-height: 6vh;
+}
+nav#media ul li {
+    position: relative;
+    list-style: none;
+    z-index: 1;
+}
+nav#media ul li a {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center; /*talvez tire*/
+    font-weight: 500;
+}
+nav#media ul li a .icon {
+    font-size: 1.5em;
+    margin-top: -10px;
+}
+
+/*
+.rodape {
+    clear: both;
+    text-align: center;
+}
+*/
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@100&family=Playfair+Display&family=Titillium+Web&display=swap');
+.rodape {
+    /*background-color: rgb(255, 221, 0);*/
+    background-image: url('../imagens/bgBlack.jpg');
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 200px;
+}
+
+.rodape h3 {
+    text-decoration: underline;
+    font-family: Oswald, sans-serif;
+    font-size: 24px;
+}
+
+.rodape a {
+    cursor: pointer;
+    color: white;
+    font-family: 'Inconsolata', monospace;
+    font-size: 14px;
+}

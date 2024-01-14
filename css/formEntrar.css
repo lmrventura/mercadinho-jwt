@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@100&family=Playfair+Display&family=Titillium+Web&display=swap');
+
+body {
+    font-family: 'Noto Sans', sans-serif;
+}
+
+form {
+    width: 70px auto;
+    position: relative;
+    margin: auto;
+    font-weight: bolder;
+}
+
+fieldset {
+    border-radius: 20px;
+    border-color: rgba(235, 232, 232, 0.5);/*set opacity 0*/
+    width: 30%;
+    margin: 0px auto; /*50px auto*/
+}
+
+@media screen and (max-width:1150px){
+    fieldset {
+        width: 55%;
+    }
+}
+@media screen and (max-width:720px){
+    fieldset {
+        width: 80%;
+    }
+}
+
+
+p#idsignup {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 15px;
+    font-size: 20pt;
+    font-family: sans-serif;
+    font-weight: bolder;
+}
+
+p{
+    text-indent: 10px;
+}
+
+.imgcentro {
+    outline: 1px solid black;
+}
+
+.title-icon {
+    text-align: center;
+}
+
+img#icone {
+    width: 100px; 
+    height: 100px;
+}
+
+input {
+    margin: 5px;
+    padding: 5px;
+}
+
+.inputs{
+    text-align: center;
+}
+
+input[type="email"], input[type="text"],input[type="password"], textarea {
+    width: 90%;
+    height: 6mm;
+    margin: 0 auto;
+    font-family: sans-serif;
+    font-weight: normal;
+    font-size: 8pt;
+    background-color: rgba(255, 255, 255,.8); /*RGBA adicionado para a OPACIDADE .8 não apagar completamente a imagem no BACKGROUND(IMAGE)*/
+    border-color: rgba(235, 232, 232, 0.5);
+    /*padding: 13px;*/
+}
+
+.botao-centro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+input#botao {
+    cursor: pointer;
+    background-color: rgb(76, 114, 136);
+    border-radius: 8%;
+    color: white;
+    font-weight: bold;
+    width: 20%;
+    margin-bottom: 10px;
+    transition: transform 300ms, background-color 300ms;
+    animation: pulse 500ms;
+}
+
+input#botao:hover {
+    transform: scale(1.05);
+    background-color: #282929; 
+}
+
+div#forgotpassword {
+    background-color: #928f8f;
+}
+
+div#lembrete {
+    font-weight: normal;
+    margin: auto;
+    padding-top: 8px;
+    margin-bottom: 2%;
+
+}
+
+input#checkbox {
+    padding-left: 10px;
+    margin-left: 10px;
+}
+
+label, span{
+    font-weight: bold;
+}
+
+span:hover {
+    opacity: 0.65;
+}
