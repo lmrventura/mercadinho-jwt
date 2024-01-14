@@ -1,6 +1,13 @@
 <?php
     require_once 'modelo/venda.php'; 
     $objVenda = new Venda(); //criei um objeto do PRODUTO, chamando a classe modelo do PRODUTO que tem validar, editar, runQueery etc PRESENTE EM MODELO
+
+    require_once 'modelo/produto.php';
+    $objProduto = new Produto();
+
+    $retornoProduto = $objProduto->visualizarProtudos();
+    // var_dump($retornoProduto);
+    // die;
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -107,7 +114,25 @@
                 <input type="hidden" name="insert">
                 <div class="form-group">
                     <label for="">Produto</label>
-                    <input type="text" class="form-control" name="txtIdProduto" required>
+                    <!-- <input type="text" class="form-control" name="txtIdProduto" required> -->
+                    <select name="txtProduto" class="form-control" data-required="true">
+                    <option value="" selected hidden>Selecione o Produto</option>
+                    <?php
+                      if (count($retornoProduto)) { 
+                        foreach ($retornoProduto as $resultado_produto) {
+                    ?>
+                          <option value="
+                            <?php echo $resultado_produto['id'];?>
+                          ">
+                            <?php 
+                              echo $resultado_produto['nome']; 
+                            ?>
+                          </option>
+                    <?php
+                        }                                                     
+                     }                                                     
+                    ?>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="">Quantidade</label>
@@ -135,7 +160,7 @@
       <!-- Modal body -->
       <div class="modal-body">
             <form action="controle/ctr_venda.php" method="POST">
-                <input type="hidden" name="delete" id="recipient-id">
+                <input type="hidden" name="delete" id="recipient-id"> 
                 <div class="form-group">
                     <label for="">ID</label>
                     <input type="text" class="form-control" name="txtIdVenda" id="recipient-idvenda" readonly>

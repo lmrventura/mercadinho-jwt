@@ -1,6 +1,10 @@
 <?php
     require_once 'modelo/produto.php';
     $objProduto = new Produto();
+
+    $returnoProduto = $objProduto->getProduto();
+    // var_dump($returnoProduto);
+    // die;
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -144,7 +148,7 @@
       <!-- Modal body -->
         <div class="modal-body">
             <?php
-                
+                /*
                 $conn = new PDO("mysql:host=localhost:3306;dbname=mercadinhodb", "root", "");
                 $stmt = $conn->prepare("SELECT * FROM produto ORDER BY id DESC LIMIT 1;");
                 $stmt->execute();
@@ -154,6 +158,10 @@
                 foreach($stmt->fetchAll() as $produto => $p) {
                     echo "id: " . $p["id"]. " - Name: " . $p["nome"]. " - Preço " . $p["preco"]. "<br>";
                 }
+                */
+                foreach($returnoProduto as $p) {
+                  echo "id: " . $p["id"]. " - Name: " . $p["nome"]. " - Preço " . $p["preco"]. "<br>";
+              }
             ?>
         </div>
     </div>

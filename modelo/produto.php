@@ -24,12 +24,27 @@
             try {
                 $sql = "SELECT * FROM produto ORDER BY id DESC LIMIT 1;";
                 $stmt = $this->conn->prepare($sql);
-                return $stmt->execute();
-                
+                $stmt->execute();
+                $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                return $result;
             }catch(PDOEXception $e){
                 echo("Error: ".$e->getMessage());
-            }finally{
-                $this->conn = null;
+            }
+        }
+
+        public function updateProduto($quantidadeVendida, $id){
+            $sql = "update";
+        }
+        
+        public function visualizarProtudos() {
+            try {
+                $sql = "SELECT * FROM produto ORDER BY id";
+                $stmt = $this->conn->prepare($sql);
+                $stmt->execute();
+                $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                return $result;
+            }catch(PDOEXception $e){
+                echo("Error: ".$e->getMessage());
             }
         }
         

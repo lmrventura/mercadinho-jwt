@@ -1,7 +1,8 @@
 <?php
     require_once 'conexao.php';
+    require_once 'produto.php';
 
-    class Venda {
+    class Venda extends Produto {
         public $quantidade;
         public $desconto;
         
@@ -53,7 +54,7 @@
             }
         }
 
-        public function editar($id_produto, $quantidade, $id){
+        public function editarVenda($id_produto, $quantidade, $id){
             //15 minutos
             try{
                 $sql = "UPDATE venda SET
