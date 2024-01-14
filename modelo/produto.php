@@ -2,9 +2,9 @@
     require_once 'conexao.php';
 
     class Produto{
-        public $nome;
-        public $preco;
-        public $quantidade;
+        protected $nome;
+        protected $preco;
+        protected $quantidade;
         
         private $conn;
 
@@ -32,7 +32,7 @@
                 $this->conn = null;
             }
         }
-        
+
         public function setProduto($data){ //$nome, $quantidade, $preco - Create
             try{
                 $this->nome = $data["nome"];
@@ -68,7 +68,7 @@
             }
         }
 
-        public function editar($nome, $quantidade, $preco, $id){ 
+        public function editarProduto($nome, $quantidade, $preco, $id){ 
             try{
                 $sql = "UPDATE produto SET
                         nome = :nome,

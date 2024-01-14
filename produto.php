@@ -227,22 +227,6 @@
 </div>
 
 <script>
-    $('#myModalUltimoProduto').on('show.bs.modal', function(event){
-        var button = $(event.relatedTarget)
-        var recipientId = button.data('id');
-        var recipientNome = button.data('nome')
-        var recipientQuantidade = button.data('quantidade')
-        var recipientPreco = button.data('preco')
-
-        var modal = $(this)
-        modal.find('#recipient-id').val(recipientId);
-        modal.find('#recipient-nome').val(recipientNome);
-        modal.find('#recipient-quantidade').val(recipientQuantidade);
-        modal.find('#recipient-preco').val(recipientPreco);
-    })
-</script>
-
-<script>
     $('#myModalDeletar').on('show.bs.modal', function(event){
         var button = $(event.relatedTarget)
         var recipientId = button.data('id');

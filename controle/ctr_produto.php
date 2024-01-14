@@ -39,7 +39,7 @@
         $nome = $_POST['txtNome'];
         $quantidade = $_POST['txtQuantidade'];
         $preco = $_POST['txtPreco'];
-        if($objProduto->editar($nome, $quantidade, $preco, $id)){
+        if($objProduto->editarProduto($nome, $quantidade, $preco, $id)){
             $objProduto->redirect('../produto.php');
         }
     }
