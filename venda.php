@@ -1,12 +1,19 @@
 <?php
     require_once 'modelo/venda.php'; 
-    $objVenda = new Venda(); //criei um objeto do PRODUTO, chamando a classe modelo do PRODUTO que tem validar, editar, runQueery etc PRESENTE EM MODELO
-
     require_once 'modelo/produto.php';
+
+    $objVenda = new Venda(); //criei um objeto do PRODUTO, chamando a classe modelo do PRODUTO que tem validar, editar, runQueery etc PRESENTE EM MODELO
     $objProduto = new Produto();
 
     $retornoProduto = $objProduto->visualizarProtudos();
+    $retornoUltimaVenda = $objVenda->getVenda(); //implementação do método solicitado.
+
     // var_dump($retornoProduto);
+    //var_dump($retornoUltimaVenda);
+    //$validacaoProduto = $objVenda->isProdutoCadastrado(9);
+    // die;
+    
+    // var_dump($validacaoProduto);
     // die;
 ?>
 <!DOCTYPE html>
@@ -31,7 +38,7 @@
     </label>
     <ul id="menu">
         <li>
-            <a href="produto.php" target="_blank">Produto</a>
+            <a href="produto.php" target="">Produto</a>
         </li>
         <li>
             <a href="venda.php">Venda</a>
@@ -50,6 +57,7 @@
                 <tr>
                     <th colspan="5">
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModalCadastrar">Novo</button>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModalUltimaVenda">Última Venda Cadastrada</button>
                     </th>
                 </tr>              
                 <tr>
@@ -62,7 +70,7 @@
             </thead>
             <tbody>
                 <?php
-                    $query = "select * from venda";
+                    $query = "select * from venda"; 
                     $stmt = $objVenda->runQuery($query);
                     $stmt->execute();
                     while($objVenda = $stmt->fetch(PDO::FETCH_ASSOC)){ 
@@ -114,25 +122,7 @@
                 <input type="hidden" name="insert">
                 <div class="form-group">
                     <label for="">Produto</label>
-                    <!-- <input type="text" class="form-control" name="txtIdProduto" required> -->
-                    <select name="txtProduto" class="form-control" data-required="true">
-                    <option value="" selected hidden>Selecione o Produto</option>
-                    <?php
-                      if (count($retornoProduto)) { 
-                        foreach ($retornoProduto as $resultado_produto) {
-                    ?>
-                          <option value="
-                            <?php echo $resultado_produto['id'];?>
-                          ">
-                            <?php 
-                              echo $resultado_produto['nome']; 
-                            ?>
-                          </option>
-                    <?php
-                        }                                                     
-                     }                                                     
-                    ?>
-                    </select>
+                    <input type="text" class="form-control" name="txtIdProduto" required>
                 </div>
                 <div class="form-group">
                     <label for="">Quantidade</label>
@@ -145,6 +135,28 @@
   </div>
 </div>
 
+<!-- The Modal Última Venda-->
+<div class="modal" id="myModalUltimaVenda">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header" style="background-color: black; color:white">
+        <h4 class="modal-title">Última Venda</h4>
+        <button type="button" class="close" data-dismiss="modal" style="color:white">&times;</button>
+      </div>
+    
+      <!-- Modal body -->
+        <div class="modal-body">
+            <?php
+                foreach($retornoUltimaVenda as $v) {
+                  echo "idVenda: " . $v["id"]. " - IdProduto: " . $v["id_produto"]. " - Quantidade " . "<br>";//. " - Preço " . $v["preco"]. "<br>";
+              }
+            ?>
+        </div>
+    </div>
+  </div>
+</div>
 
 <!-- The Modal Deletar-->
 <div class="modal" id="myModalDeletar">

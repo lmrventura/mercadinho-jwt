@@ -19,15 +19,23 @@
             $stmt = $this->conn->prepare($sql);
             return $stmt;
         }
-        
-        public function getVenda(){
-            
-        }
 
-        public function insert( $id_produto, $quantidade){ 
+        public function getVenda() {
+            try {
+                $sql = "SELECT * FROM venda ORDER BY id DESC LIMIT 1;";
+                $stmt = $this->conn->prepare($sql);
+                $stmt->execute();
+                $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                return $result;
+            }catch(PDOEXception $e){
+                echo("Error: ".$e->getMessage());
+            }
+        }
+        
+        public function setVenda( $id_produto, $quantidade){ 
             try{
                 $sql = "insert into venda(id_produto, quantidade)
-                        values(:id_produto, :quantidade)";
+                values(:id_produto, :quantidade)";  //registro da venda no banco de dados após validação.
                 $stmt = $this->conn->prepare($sql);
                 $stmt->bindParam(":id_produto", $id_produto);
                 $stmt->bindParam(":quantidade", $quantidade);

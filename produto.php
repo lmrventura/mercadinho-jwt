@@ -4,6 +4,8 @@
 
     $returnoProduto = $objProduto->getProduto();
     // var_dump($returnoProduto);
+    // $testGetQuantidade = $objProduto->getQuantidade(6);
+    // var_dump($testGetQuantidade);
     // die;
 ?>
 <!DOCTYPE html>
@@ -30,10 +32,10 @@
     <ul id="menu">
         <li>
         <li>
-            <a href="produto.php" target="_blank">Produto</a>
+            <a href="produto.php" target="">Produto</a>
         </li>
         <li>
-            <a href="venda.php" target="_blank">Venda</a>
+            <a href="venda.php" target="">Venda</a>
         </li>
     </ul>
 </nav>
@@ -148,17 +150,6 @@
       <!-- Modal body -->
         <div class="modal-body">
             <?php
-                /*
-                $conn = new PDO("mysql:host=localhost:3306;dbname=mercadinhodb", "root", "");
-                $stmt = $conn->prepare("SELECT * FROM produto ORDER BY id DESC LIMIT 1;");
-                $stmt->execute();
-                //$stmt = $objProduto->getProduto();
-                // set the resulting array to associative
-                $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
-                foreach($stmt->fetchAll() as $produto => $p) {
-                    echo "id: " . $p["id"]. " - Name: " . $p["nome"]. " - Preço " . $p["preco"]. "<br>";
-                }
-                */
                 foreach($returnoProduto as $p) {
                   echo "id: " . $p["id"]. " - Name: " . $p["nome"]. " - Preço " . $p["preco"]. "<br>";
               }
@@ -233,22 +224,6 @@
 
 </div>
 </div>
-
-<script>
-    $('#myModalUltimoProduto').on('show.bs.modal', function(event){
-        var button = $(event.relatedTarget)
-        var recipientId = button.data('id');
-        var recipientNome = button.data('nome')
-        var recipientQuantidade = button.data('quantidade')
-        var recipientPreco = button.data('preco')
-
-        var modal = $(this)
-        modal.find('#recipient-id').val(recipientId);
-        modal.find('#recipient-nome').val(recipientNome);
-        modal.find('#recipient-quantidade').val(recipientQuantidade);
-        modal.find('#recipient-preco').val(recipientPreco);
-    })
-</script>
 
 <script>
     $('#myModalDeletar').on('show.bs.modal', function(event){

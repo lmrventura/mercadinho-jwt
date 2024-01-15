@@ -32,8 +32,32 @@
             }
         }
 
-        public function updateProduto($quantidadeVendida, $id){
-            $sql = "update";
+        public function getQuantidade($id){
+            try {
+                $sql = "select quantidade from produto where id = :id";
+                $stmt = $this->conn->prepare($sql);
+                $stmt->bindParam(":id", $id);
+                $stmt->execute();
+                $quantidadeEstoqueProduto = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                return $quantidadeEstoqueProduto;
+            }catch(PDOEXception $e){
+                echo("Error: ".$e->getMessage());
+            }
+        }
+
+        public function setQuantidade($id, $quantidade) {
+            try {
+                $sql = "UPDATE produto SET 
+                        quantidade = :quantidade 
+                        WHERE id = :id";
+                $stmt = $this->conn->prepare($sql);
+                $stmt->bindParam(":id", $id);
+                $stmt->bindParam(":quantidade", $quantidade);
+                $stmt->execute();
+                return $stmt;
+            }catch(PDOEXception $e){
+                echo("Error: ".$e->getMessage());
+            }
         }
         
         public function visualizarProtudos() {
@@ -44,6 +68,23 @@
                 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 return $result;
             }catch(PDOEXception $e){
+                echo("Error: ".$e->getMessage());
+            }
+        }
+
+        public function isProdutoCadastrado($id){
+            try{
+                $sql = "select id from produto where id = :id";  //validação da EXISTÊNCIA do produto ($id_produto) no banco de dados
+                $stmt = $this->conn->prepare($sql);              //eu colocaria esse bloco de código na classe Produto dentro de um método isProdutoCadastrado e utilizaria o método no ctr_venda. Mas foi feito conforme foi pedido na descrição do Problema. Isso não feriria o Princípio da Responsabilidade Única (SRP) do SOLID
+                $stmt->bindParam(":id", $id);
+                $stmt->execute();
+                $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                if($result != null){
+                    return true;
+                }else{
+                    return false;
+                }
+            }catch(PDOException $e){
                 echo("Error: ".$e->getMessage());
             }
         }
