@@ -32,6 +32,14 @@
             }
         }
 
+        public function getAllProducs(){
+            $query = "select * from produto";
+            $stmt = $this->conn->prepare($query);
+            $stmt->execute();
+            $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $products;
+        }
+
         public function getQuantidade($id){
             try {
                 $sql = "select quantidade from produto where id = :id";

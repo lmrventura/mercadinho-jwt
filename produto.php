@@ -6,6 +6,9 @@
     // var_dump($returnoProduto);
     // $testGetQuantidade = $objProduto->getQuantidade(6);
     // var_dump($testGetQuantidade);
+    // // die;
+    $products = $objProduto->getAllProducs();
+    // var_dump($products);
     // die;
 ?>
 <!DOCTYPE html>
@@ -14,7 +17,7 @@
   <title>HBV</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="css/nav.css">
+  <!-- <link rel="stylesheet" href="css/nav.css"> -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -23,22 +26,25 @@
 <body>
 
 <div class="header">
-<nav>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="before"></div>
-    <input type="checkbox" id="check">
-    <label for="check" class="checkbtn">
+    <input type="checkbox" id="check" class="d-none">
+    <label for="check" class="navbar-toggler checkbtn" data-toggle="collapse" data-target="#menu">
         &#9776;
     </label>
-    <ul id="menu">
-        <li>
-        <li>
-            <a href="produto.php" target="">Produto</a>
-        </li>
-        <li>
-            <a href="venda.php" target="">Venda</a>
-        </li>
-    </ul>
+
+    <div class="collapse navbar-collapse" id="menu">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="produto.php" target="">Produto</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="venda.php">Venda</a>
+            </li>
+        </ul>
+    </div>
 </nav>
+
 </div>
 <div class="container">
     <br>
@@ -65,31 +71,28 @@
             </thead>
             <tbody>
                 <?php
-                    $query = "select * from produto";
-                    $stmt = $objProduto->runQuery($query);
-                    $stmt->execute();
-                    while($objProduto = $stmt->fetch(PDO::FETCH_ASSOC)){
+                   foreach($products as $product) {
                 ?>
                         <tr>
-                            <td><?php echo($objProduto['id']) ?></td>
-                            <td><?php  echo($objProduto['nome']) ?></td>
-                            <td><?php echo($objProduto['quantidade']) ?></td>
-                            <td><?php echo($objProduto['preco']) ?></td>
+                            <td><?php echo($product['id']) ?></td>
+                            <td><?php  echo($product['nome']) ?></td>
+                            <td><?php echo($product['quantidade']) ?></td>
+                            <td><?php echo($product['preco']) ?></td>
                             <td>
                               <button type="button" class="btn btn-info"
                                   data-toggle="modal" data-target="#myModalEditar"
-                                  data-id="<?php echo($objProduto['id']) ?>"
-                                  data-nome="<?php echo($objProduto['nome']) ?>"
-                                  data-quantidade="<?php echo($objProduto['quantidade']) ?>"
-                                  data-preco="<?php echo($objProduto['preco']) ?>">
+                                  data-id="<?php echo($product['id']) ?>"
+                                  data-nome="<?php echo($product['nome']) ?>"
+                                  data-quantidade="<?php echo($product['quantidade']) ?>"
+                                  data-preco="<?php echo($product['preco']) ?>">
                                   Editar
                               </button>
                             </td>
                             <td>
                                 <button type="button" class="btn btn-danger"
                                     data-toggle="modal" data-target="#myModalDeletar"
-                                    data-id="<?php echo($objProduto['id']) ?>"
-                                    data-nome="<?php echo( $objProduto['nome']) ?>">
+                                    data-id="<?php echo($product['id']) ?>"
+                                    data-nome="<?php echo( $product['nome']) ?>">
                                         Deletar
                                 </button>
                             </td>
@@ -115,8 +118,8 @@
 
       <!-- Modal body -->
       <div class="modal-body">
-            <form action="controle/ctr_produto.php" method="POST">
-                <input type="hidden" name="setProduto">
+            <form action="controle/ctr_produto.php" method="POST">  <!-- Os dados do modal são enviados para o CONTROLE ctr_produto-->
+                <input type="hidden" name="setProduto"> <!-- Executa a estrura de dados que tiver no controle com o nome em setProduto -->
                 <div class="form-group">
                     <label for="">Nome</label>
                     <input type="text" class="form-control" name="txtNome" required>

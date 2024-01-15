@@ -20,6 +20,14 @@
             return $stmt;
         }
 
+        public function getAllVendas(){
+            $query = "select * from venda";
+            $stmt = $this->conn->prepare($query);
+            $stmt->execute();
+            $vendas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $vendas;
+        }
+
         public function getVenda() {
             try {
                 $sql = "SELECT * FROM venda ORDER BY id DESC LIMIT 1;";
@@ -95,7 +103,8 @@
             $stmt->bindParam(":id_venda", $id_venda);
             $stmt->execute();
             $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            return $result;
+            $string = $result[0]["f_getTotalVenda('$id_venda')"];;
+            return $string;
         }
         public function getValorTotalDaVenda($id_venda) {
             try {

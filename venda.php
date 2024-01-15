@@ -7,13 +7,14 @@
 
     $retornoProduto = $objProduto->visualizarProtudos(); //visualizarProtudos
     $retornoUltimaVenda = $objVenda->getVenda(); //implementação do método solicitado.
-
+    $vendas = $objVenda->getAllVendas();
     // var_dump($retornoProduto);
     //var_dump($retornoUltimaVenda);
     //$validacaoProduto = $objVenda->isProdutoCadastrado(9);
     // die;
-    //$calcVenda = $objVenda->getTotalVenda(2);
-    //var_dump($calcVenda);
+    // $calcVenda = $objVenda->getTotalVenda(3);
+    // $valorString = $calcVenda[0]["f_getTotalVenda('3')"];
+    // var_dump($valorString);
     // die;
 ?>
 <!DOCTYPE html>
@@ -22,7 +23,7 @@
   <title>HBV</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="css/nav.css">
+  <!-- <link rel="stylesheet" href="css/nav.css"> -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -30,20 +31,23 @@
 </head>
 <body>
 <div class="header">
-<nav>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="before"></div>
-    <input type="checkbox" id="check">
-    <label for="check" class="checkbtn">
+    <input type="checkbox" id="check" class="d-none">
+    <label for="check" class="navbar-toggler checkbtn" data-toggle="collapse" data-target="#menu">
         &#9776;
     </label>
-    <ul id="menu">
-        <li>
-            <a href="produto.php" target="">Produto</a>
-        </li>
-        <li>
-            <a href="venda.php">Venda</a>
-        </li>
-    </ul>
+
+    <div class="collapse navbar-collapse" id="menu">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="produto.php" target="">Produto</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="venda.php">Venda</a>
+            </li>
+        </ul>
+    </div>
 </nav>
 </div>
 <div class="container">
@@ -64,34 +68,36 @@
                     <th>Id Venda</th>
                     <th>Id Produto</th>
                     <th>Quantidade</th>
+                    <th>Valor</th>
                     <th>Editar</th>
                     <th>Deletar</th>
                 </tr>                
             </thead>
             <tbody>
                 <?php
-                    $query = "select * from venda"; 
-                    $stmt = $objVenda->runQuery($query);
-                    $stmt->execute();
-                    while($objVenda = $stmt->fetch(PDO::FETCH_ASSOC)){ 
+                    foreach($vendas as $venda){
                 ?>
                         <tr>
-                            <td><?php echo($objVenda['id']) ?></td>
-                            <td><?php echo($objVenda['id_produto']) ?></td>
-                            <td><?php echo($objVenda['quantidade']) ?></td>
+                            <td><?php echo($venda['id']) ?></td>
+                            <td><?php echo($venda['id_produto']) ?></td>
+                            <td><?php echo($venda['quantidade']) ?></td>
+                            <td><?php 
+                                    echo($objVenda->getTotalVenda($venda['quantidade'])); 
+                                ?>
+                            </td><!-- $objVenda->getTotalVenda($venda['id_produto'])[0]["f_getTotalVenda('2')"] -->
                             <td> 
                               <button type="button" class="btn btn-info"
                                   data-toggle="modal" data-target="#myModalEditar"
-                                  data-id="<?php echo($objVenda['id']) ?>"
-                                  data-id_produto="<?php echo($objVenda['id_produto']) ?>"
-                                  data-quantidade="<?php echo($objVenda['quantidade']) ?>">
+                                  data-id="<?php echo($venda['id']) ?>"
+                                  data-id_produto="<?php echo($venda['id_produto']) ?>"
+                                  data-quantidade="<?php echo($venda['quantidade']) ?>">
                                   Editar
                               </button>
                             </td>
                             <td>
                                 <button type="button" class="btn btn-danger"
                                     data-toggle="modal" data-target="#myModalDeletar"
-                                    data-id="<?php echo($objVenda['id']) ?>"
+                                    data-id="<?php echo($venda['id']) ?>"
                                 >
                                         Deletar
                                 </button>

@@ -1,0 +1,44 @@
+use mercadinhodb;
+
+create table produto(
+	id INT not null auto_increment,
+	nome VARCHAR(15) not null,
+	preco numeric(9, 2) not null,
+	quantidade int not null,
+	primary key(id)
+);
+drop table produto;
+
+SELECT * FROM produto;
+SELECT * FROM produto ORDER BY id DESC LIMIT 1;
+
+create table venda(
+	id INT not null auto_increment,
+	quantidade int not null,
+	id_produto int not null,
+	constraint fk_id_produto foreign key (id_produto) references produto (id),
+	primary key(id)
+);
+drop table venda;
+
+
+select * from venda;
+select * from produto;
+SELECT * FROM produto;
+
+CREATE FUNCTION f_getTotalVenda(id_venda INT)
+RETURNS DECIMAL(10, 2)
+BEGIN
+    DECLARE total DECIMAL(10, 2);
+    SELECT ve.quantidade * pro.preco INTO total
+    FROM venda ve
+    INNER JOIN produto pro ON pro.id = ve.id_produto
+    WHERE ve.id = id_venda;
+
+    RETURN total;
+end;
+
+SHOW FUNCTION STATUS WHERE Db = 'mercadinhodb';
+DROP FUNCTION IF EXISTS f_getTotalVenda;
+SELECT f_getTotalVenda(2);
+
