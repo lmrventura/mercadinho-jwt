@@ -12,8 +12,8 @@
     //var_dump($retornoUltimaVenda);
     //$validacaoProduto = $objVenda->isProdutoCadastrado(9);
     // die;
-    
-    // var_dump($validacaoProduto);
+    //$calcVenda = $objVenda->getTotalVenda(2);
+    //var_dump($calcVenda);
     // die;
 ?>
 <!DOCTYPE html>
