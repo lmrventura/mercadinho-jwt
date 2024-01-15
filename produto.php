@@ -151,7 +151,9 @@
         <div class="modal-body">
             <?php
                 foreach($returnoProduto as $p) {
-                  echo "id: " . $p["id"]. " - Name: " . $p["nome"]. " - Preço " . $p["preco"]. "<br>";
+                  echo "id: " . $p["id"]. 
+                  "<br> Nome: " . $p["nome"]. 
+                  "<br> Preço: " . $p["preco"];
               }
             ?>
         </div>

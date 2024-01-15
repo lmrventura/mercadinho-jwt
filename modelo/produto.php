@@ -22,7 +22,7 @@
         
         public function getProduto() {
             try {
-                $sql = "SELECT * FROM produto ORDER BY id DESC LIMIT 1;";
+                $sql = "SELECT * FROM produto ORDER BY id DESC LIMIT 1;"; //DESC é a abreviação de DESCENDING, cuja tradução é DECRESCENTE. LIMIT 1 resgata 1 valor, no caso apenas o último produto adicionado porque está na ordem decrescente.
                 $stmt = $this->conn->prepare($sql);
                 $stmt->execute();
                 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);

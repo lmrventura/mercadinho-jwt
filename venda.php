@@ -5,7 +5,7 @@
     $objVenda = new Venda(); //criei um objeto do PRODUTO, chamando a classe modelo do PRODUTO que tem validar, editar, runQueery etc PRESENTE EM MODELO
     $objProduto = new Produto();
 
-    $retornoProduto = $objProduto->visualizarProtudos();
+    $retornoProduto = $objProduto->visualizarProtudos(); //visualizarProtudos
     $retornoUltimaVenda = $objVenda->getVenda(); //implementação do método solicitado.
 
     // var_dump($retornoProduto);
@@ -150,7 +150,10 @@
         <div class="modal-body">
             <?php
                 foreach($retornoUltimaVenda as $v) {
-                  echo "idVenda: " . $v["id"]. " - IdProduto: " . $v["id_produto"]. " - Quantidade " . "<br>";//. " - Preço " . $v["preco"]. "<br>";
+                  echo "idVenda: " . $v["id"]. 
+                  " <br> IdProduto: " . $v["id_produto"]. 
+                  " <br> Quantidade: " . $v["quantidade"]. 
+                  "<br>";//. " - Preço " . $v["preco"]. "<br>";
               }
             ?>
         </div>

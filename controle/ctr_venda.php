@@ -7,20 +7,20 @@
     if(isset($_POST['insert'])){
         
         $id_produto = $_POST['txtIdProduto'];
-        $objProduto->quantidade = $_POST['txtQuantidade'];
+        $quantidade = $_POST['txtQuantidade'];
 
-        $quantidadeEstoqueProduto = $objProduto->getQuantidade($id_produto); //resgata a quantidade de produtos do banco por meio da chave $id_produto
-        $quantidadeEstoque = $quantidadeEstoqueProduto[0]["quantidade"]; //transforma em inteiro, resgatando apenas o valor inteiro do array array(1) { [0]=> array(1) {  ["quantidade"]=>int(0)}}
+        $quantidadeEstoqueProduto = $objProduto->getQuantidade($id_produto); //resgata a quantidade de produtos do banco com o parâmetro $id_produto que foi obtido $_POST['txtIdProduto']; presente no input do modal cadastrar.
+        $quantidadeEstoque = $quantidadeEstoqueProduto[0]["quantidade"]; //transforma em inteiro, resgatando apenas o valor inteiro da quantidade presente no array array(1) { [0]=> array(1) {  ["quantidade"]=>int(0)}}
 
         if($objProduto->isProdutoCadastrado($id_produto)){ //verifica se existe algum produto cadastrado com o $id_produto
             if($quantidadeEstoque >= $quantidade){  //verifica se a quantidade de produtos da venda emitida pela view é maior ou igual a quantidade presente no estoque
-                $novaQuantidadeDoEstoque = $quantidadeEstoque - $quantidade; // atualizando o valor do estoque após a venda
+                $novaQuantidadeDoEstoque = $quantidadeEstoque - $quantidade; // atualizando o valor do estoque após a venda, subtraindo o valor do banco obtido com o$quantidade vindo da VIEW
                 $objProduto->setQuantidade($id_produto, $novaQuantidadeDoEstoque);  //UPDATE na entidade de PRODUTOS do banco 
-                if($objVenda->setVenda($id_produto, $quantidade)){ // INSERT da tupla
+                if($objVenda->setVenda($id_produto, $quantidade)){ // INSERT/   ******setVenda******  da tupla
                     $objVenda->redirect('../venda.php');
                 }
             }else{
-                $objVenda->redirect('../venda.php');
+                $objVenda->redirect('../venda.php'); //se o if retornar falso ele redireciona para a página sem executar a instrução dentro do if
             }
         }else{
             $objVenda->redirect('../venda.php');
@@ -39,7 +39,7 @@
         $id_produto = $_POST['txtIdProduto'];
         $quantidade = $_POST['txtQuantidade'];
 
-        if($objVenda->editarVenda($id_produto, $quantidade, $id)){ //if($objVenda->editar($nome, $cpf, $login, $senha, $id)){
+        if($objVenda->editarVenda($id_produto, $quantidade, $id)){
             $objVenda->redirect('../venda.php');
         }
     }

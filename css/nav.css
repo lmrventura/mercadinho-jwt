@@ -1,164 +1,72 @@
-* {
-    padding: 0;
+/* Reset de estilos para evitar padrões do navegador */
+body, h1, h2, p, ul, li {
     margin: 0;
-    text-decoration: none;
-    list-style: none;
-    font-family: 'Noto Sans', sans-serif;
+    padding: 0;
 }
 
-.before {
-    width: 100%;
-    height: 5px;
-    background-color: yellow;
-    position: fixed;
+/* Estilo básico para a navegação */
+nav {
+    background-color: #333;
+    padding: 15px;
+    text-align: center;
 }
 
-nav{
-    background: rgba(0, 0, 0, .65); /*#23232e;*/
-    height: 60px;
-    width: 100%;
-    position: fixed;
-    z-index: 2;
-}
-
-.logo {
-    color: rgb(255, 255, 255);
-    font-size: 35px;
-    line-height: 60px; /*determines the block-progression dimension of the text-content area of an iline box*/
-    padding: 0 100px;
-    /*font-weight: bold;*/
-    letter-spacing: 3px;
-}
-
-.logo-img {
-    width: 100px; 
-    height: 100px;
-    z-index: 2;
-}
-
-nav ul {
-    float: right;
-    /*margin: 20px;*/
-    margin-right: 100px;
-}
-
-nav ul li {
-    display: inline-block;
-    line-height: 60px;
-    margin: 0 5px;
-    letter-spacing: 3px;
-}
-
-nav ul li a {
-    color: white;
-    font-size: 17px;
-    border-radius: 3px;
-    /*text-transform: uppercase;*/
-    text-decoration: none;
-}
-
-.icon {
-    cursor: pointer;
-}
-
-nav ul li a:hover {
-    background: rgba(0, 0, 0, .8);
-    /*transition: .5s;*/
-    font-weight: bold;
-    padding: 3px;
-    color: rgb(197, 197, 43);
-    text-decoration: none;
-}
-/*
-.navBtn {
-    letter-spacing: 3px;
-    font-size: 17px;
-    margin: 0 5px;
-    cursor: pointer;
-    color: white;
-    border: 0;
-    width: 80px;
-    height: 30px;
-    border-radius: 3px;
-    background-color: rgba(0, 0, 0, .0);
-    transition: transform 300ms, background-color 300ms;
-    animation: pulse 500ms;
-}   
-.navBtn:hover {
-    font-weight: bold;
-    transform: scale(1.07);
-}
-*/
-.btnIcon {
-    letter-spacing: 3px;
-    margin: 0 5px;
-    cursor: pointer;
-    color: white;
-    border: 0;
-    width: 20px;
-    height: 30px;
-    border-radius: 3px;
-    background-color: rgba(0, 0, 0, .0);
-    transition: transform 300ms, background-color 300ms;
-    animation: pulse 500ms;
-}
-.btnIcon {
-    font-weight: bold;
-    transform: scale(1.2);
-}
-
+/* Estilo para o botão de menu (ícone hamburguer) */
 .checkbtn {
     font-size: 30px;
     color: white;
-    float: right;
-    line-height: 60px;
-    margin-right: 40px;
     cursor: pointer;
-    display: none;
 }
 
+/* Estilo para a lista de navegação */
+#menu {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+}
+
+/* Estilo para os itens da lista de navegação */
+#menu li {
+    margin: 0 15px;
+}
+
+/* Estilo para os links da lista de navegação */
+#menu a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+/* Estilo para o contêiner antes do botão de menu (pode ser usado para adicionar conteúdo adicional) */
+.before {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+/* Estilo para o input checkbox usado para o menu responsivo */
 #check {
     display: none;
 }
 
-@media (max-width: 1160px) {
-    .checkbtn{
-        display: block;
-    }
-    ul#menu {
-        position: fixed;
-        width: 100%;
-        height: 100vh;
-        background: #000000;
-        top: 60px;
-        left: -100%;
-        text-align: center;
-        transition: all .5s;
-    }
-    nav ul#menu li {
-        display: block;
-        /*line-height: 30px;*/
-        margin-top: 25px;
-    }
-    nav ul#menu li a {
-        font-size: 20px;
-    }
-    nav ul li a:hover{
-        background-color: yellow;
-        color: black;
-    }
-    a:hover, a.active{
-        background-color: none;
-        color: white;
-    }
-    #check:checked ~ ul { /*~~~~~~~~~~~*/
-        left: 0%;
-        z-index: 2;
-    }
-    .container .pContent{
-        font-size: 20px;
-    }
-    .container span {
-        font-size: 20px;
-    }
+/* Estilo para ocultar a lista de navegação quando o checkbox não estiver marcado */
+#check:not(:checked) + #menu {
+    display: none;
+}
+
+/* Estilo para exibir a lista de navegação quando o checkbox estiver marcado */
+#check:checked + #menu {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    z-index: 1;
+}
+
+/* Estilo para os itens da lista de navegação no modo responsivo */
+#check:checked + #menu li {
+    margin: 15px 0;
 }
