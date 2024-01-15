@@ -19,68 +19,6 @@ body {
     /*box-sizing: border-box;*/
     font-family: 'Noto Sans', sans-serif;
 }
-/*------------ GRID ------------*/
-.container{
-    width: 100vw;
-    height: 100vh;
-    
-    font-family: 'Quicksand', sans-serif;
-    font-weight: bold;
-    font-size: 20px;
-
-    display: grid; /*<!-- rows and columns containers */
-    
-    /*the width of the columns are goind to be 1 fraction of the total remaining space 1fr 1fr 1fr == repeat(3, 1)*/
-    
-    /*grid-template: grid-template-rows: 50px 1fr 1fr 100px; / grid-template-columns: repeat(3, 1fr);*/
-    grid-template: 450px 450px 450px 450px 450px 450px 450px 200px / repeat(2,1fr);
-
-    gap: 0px;
-}
-
-.container div {
-    padding: 0;
-    margin: 0;
-    /*border: 1px solid #000000;*/
-}
-
-.content-1a {
-    grid-column-start: 1;
-    grid-column-end: 2;
-}
-.content-1b {
-    grid-column-start: 2;
-    grid-column-end: 3;
-}
-
-.content-2a {
-    grid-column-start: 1;
-    grid-column-end: 2;
-}
-.content-2b {
-    grid-column-start: 2;
-    grid-column-end: 3;
-}
-
-.content-3a {
-    grid-column-start: 1;
-    grid-column-end: 2;
-}
-.content-3b {
-    grid-column-start: 2;
-    grid-column-end: 3;
-}
-
-.content-4 {
-    grid-column-start: 1;
-    grid-column-end: 3;
-}
-
-.rodape {
-    grid-column-start: 1;
-    grid-column-end: 3;
-}
-/*------------ END-GRID ------------*/
 
 .before {
     width: 100%;

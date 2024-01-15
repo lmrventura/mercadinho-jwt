@@ -89,6 +89,33 @@
             header("Location: $url");
         }
 
+        public function getValorTotalDaVenda($id_venda) {
+            try {
+                $sql = "CREATE FUNCTION f_getTotalVenda(id_venda INT)
+                        RETURNS DECIMAL(10, 2)
+                        BEGIN
+                            DECLARE total DECIMAL(10, 2);
+                        
+                            SELECT ve.quantidade * pro.valor INTO total
+                            FROM venda ve
+                            INNER JOIN produto po ON pro.id = pro.id_produto
+                            WHERE ve.id = id_venda;
+                        
+                            RETURN total;
+                        END";
+                $this->conn->exec($sql);//Execução da query que contém a declaração da função
+        
+                // Agora, você pode chamar a função normalmente em uma nova query
+                $sql = "SELECT f_getTotalVenda(:id_venda) as total";
+                $stmt = $this->conn->prepare($sql);
+                $stmt->bindParam(":id_venda", $id_venda, PDO::PARAM_INT);
+                $stmt->execute();
+                $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                return $result;
+            } catch(PDOException $e) {
+                echo("Error: ".$e->getMessage());
+            }
+        }
     }
     
 ?>
